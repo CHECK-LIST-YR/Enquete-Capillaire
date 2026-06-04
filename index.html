@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Diagnostic Capillaire</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#0F1E35;--teal:#0D7C66;--teal-lt:#E6F4F1;
+  --gold:#C8930A;--gold-lt:#FEF7E6;
+  --red:#C0392B;--red-lt:#FDECEA;
+  --border:#E2E8F0;--bg:#F7F9FC;--white:#fff;
+  --text:#1E293B;--muted:#64748B;--r:10px;--rl:16px;
+}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text)}
+.hdr{background:var(--navy);padding:2rem}
+.hdr-in{max-width:700px;margin:0 auto}
+.badge{display:inline-block;background:rgba(13,124,102,.25);border:1px solid rgba(13,124,102,.5);color:#5DCAA5;font-size:11px;font-weight:600;letter-spacing:.08em;padding:3px 12px;border-radius:99px;margin-bottom:1rem;text-transform:uppercase}
+.hdr h1{font-size:26px;font-weight:600;color:#fff;margin-bottom:.5rem}
+.hdr p{font-size:14px;color:rgba(255,255,255,.5);line-height:1.6}
+.hdr-meta{display:flex;gap:1.5rem;margin-top:1rem;flex-wrap:wrap}
+.mi{font-size:12px;color:rgba(255,255,255,.45);display:flex;align-items:center;gap:6px}
+.dot{width:6px;height:6px;border-radius:50%;background:var(--teal);display:inline-block}
+.pg{background:var(--white);border-bottom:1px solid var(--border);padding:.75rem 2rem;position:sticky;top:0;z-index:99}
+.pg-in{max-width:700px;margin:0 auto;display:flex;align-items:center;gap:12px}
+.pt{flex:1;height:5px;background:var(--bg);border-radius:99px;overflow:hidden}
+.pf{height:100%;background:var(--teal);border-radius:99px;width:0%;transition:width .3s}
+.pl{font-size:12px;font-weight:600;color:var(--teal);white-space:nowrap}
+.pm{font-size:12px;color:var(--muted)}
+main{max-width:700px;margin:0 auto;padding:1.5rem 2rem 3rem}
+.ib{background:var(--gold-lt);border:1px solid rgba(200,147,10,.25);border-radius:var(--r);padding:12px 16px;font-size:13px;color:#7A5800;line-height:1.6;margin-bottom:1.5rem}
+.ib strong{display:block;font-weight:600;margin-bottom:2px}
+.card{background:var(--white);border:1px solid var(--border);border-radius:var(--rl);margin-bottom:1.25rem;overflow:hidden}
+.ch{display:flex;align-items:center;gap:12px;padding:1rem 1.25rem;border-bottom:1px solid var(--border)}
+.num{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0}
+.nt{background:var(--teal-lt);color:var(--teal)}
+.np{background:#EEEDFE;color:#534AB7}
+.na{background:var(--gold-lt);color:var(--gold)}
+.nb{background:#E6F1FB;color:#185FA5}
+.nr{background:var(--red-lt);color:var(--red)}
+.ng{background:#F1F5F9;color:#64748B}
+.ct{font-size:14px;font-weight:600}
+.cs{font-size:11px;color:var(--muted);margin-top:1px}
+.cb{padding:1.25rem}
+.qi{display:flex;align-items:flex-start;gap:10px;padding:8px 10px;border-radius:var(--r);cursor:pointer;border:1px solid transparent;transition:background .15s;margin-bottom:2px}
+.qi:hover{background:var(--bg)}
+.qi.on{background:var(--teal-lt);border-color:rgba(13,124,102,.2)}
+.qi input[type=checkbox]{margin-top:2px;flex-shrink:0;accent-color:var(--teal);width:15px;height:15px;cursor:pointer}
+.qi label{font-size:13px;line-height:1.5;cursor:pointer;flex:1}
+.qi.on label{color:var(--teal)}
+.dv{height:1px;background:var(--border);margin:12px 0}
+.ol{font-size:12px;font-weight:500;color:var(--muted);margin-bottom:5px;display:block}
+.ol span{color:var(--gold);margin-right:4px}
+textarea,input[type=text],input[type=date]{width:100%;font-family:'DM Sans',sans-serif;font-size:13px;color:var(--text);background:var(--bg);border:1px solid var(--border);border-radius:var(--r);padding:9px 12px;outline:none;transition:border-color .2s,background .2s;resize:vertical}
+textarea{min-height:68px}
+textarea:focus,input:focus{border-color:var(--teal);background:var(--white);box-shadow:0 0 0 3px rgba(13,124,102,.08)}
+textarea::placeholder,input::placeholder{color:#B0BDCC}
+.og{margin-top:10px}
+.ig{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px}
+.fl{font-size:12px;font-weight:500;color:var(--muted);margin-bottom:5px;display:block}
+.sc{background:var(--white);border:1px solid var(--border);border-radius:var(--rl);padding:1.5rem;margin-bottom:1.5rem}
+.sc h3{font-size:15px;font-weight:600;margin-bottom:.4rem}
+.sc p{font-size:13px;color:var(--muted);margin-bottom:1.25rem;line-height:1.6}
+.btn{width:100%;background:var(--teal);color:white;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:600;border:none;border-radius:var(--r);padding:13px 24px;cursor:pointer;transition:background .2s}
+.btn:hover{background:#0a6654}
+.btn:disabled{background:#94a3b8;cursor:not-allowed}
+.suc{display:none;text-align:center;padding:3rem 2rem;background:var(--white);border:1px solid var(--border);border-radius:var(--rl)}
+.si{width:60px;height:60px;border-radius:50%;background:var(--teal-lt);display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;font-size:26px}
+.suc h2{font-size:20px;font-weight:600;margin-bottom:.5rem}
+.suc p{font-size:14px;color:var(--muted)}
+.ov{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:999;align-items:center;justify-content:center}
+.ob{background:white;border-radius:var(--rl);padding:2rem 2.5rem;text-align:center}
+.sp{width:34px;height:34px;border:3px solid var(--border);border-top-color:var(--teal);border-radius:50%;animation:spin .8s linear infinite;margin:0 auto 1rem}
+@keyframes spin{to{transform:rotate(360deg)}}
+@media(max-width:600px){main{padding:1rem}.pg{padding:.75rem 1rem}}
+</style>
+</head>
+<body>
+
+<div class="hdr">
+  <div class="hdr-in">
+    <div class="badge">Diagnostic terrain</div>
+    <h1>Checklist Diagnostic Capillaire</h1>
+    <p>Vos retours terrain sont essentiels pour comprendre la baisse des ventes et construire le bon plan d'action.</p>
+    <div class="hdr-meta">
+      <div class="mi"><span class="dot"></span>6 sections · ~20 minutes</div>
+      <div class="mi"><span class="dot" style="background:var(--gold)"></span>Réponse requise sous 10 jours</div>
+    </div>
+  </div>
+</div>
+
+<div class="pg">
+  <div class="pg-in">
+    <span class="pm">Avancement</span>
+    <div class="pt"><div class="pf" id="pf"></div></div>
+    <span class="pl" id="pl">0 / 0</span>
+  </div>
+</div>
+
+<main>
+  <div class="ib"><strong>Instructions</strong>Cochez chaque point observé et complétez les réponses libres. Il n'y a pas de bonne ou mauvaise réponse — nous avons besoin de la réalité terrain.</div>
+
+  <form id="frm">
+
+    <div class="card">
+      <div class="ch"><div class="num ng">ID</div><div><div class="ct">Identification</div><div class="cs">Informations sur le point de vente</div></div></div>
+      <div class="cb">
+        <div class="ig">
+          <div><label class="fl">Nom du responsable *</label><input type="text" id="nom" placeholder="Prénom Nom" required></div>
+          <div><label class="fl">Magasin *</label><input type="text" id="mag" placeholder="Nom / Ville" required></div>
+          <div><label class="fl">Date *</label><input type="date" id="dat" required></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="ch"><div class="num nt">1</div><div><div class="ct">État du rayon capillaire</div><div class="cs">Ce qu'on voit avant même de parler à la cliente</div></div></div>
+      <div class="cb">
+        <div class="qi"><input type="checkbox" data-s="s1"><label>Le rayon capillaire est propre, rangé et bien éclairé</label></div>
+        <div class="qi"><input type="checkbox" data-s="s1"><label>Les produits sont correctement facés (face avant visible, aucun produit retourné)</label></div>
+        <div class="qi"><input type="checkbox" data-s="s1"><label>Les étiquettes prix sont présentes et lisibles sur tous les articles capillaires</label></div>
+        <div class="qi"><input type="checkbox" data-s="s1"><label>Il n'y a pas de rupture de stock visible sur les références capillaires clés</label></div>
+        <div class="qi"><input type="checkbox" data-s="s1"><label>Il y a une signalétique / PLV dédiée à la famille capillaire</label></div>
+        <div class="qi"><input type="checkbox" data-s="s1"><label>Les produits sont regroupés par besoin (anti-chute, hydratation, boucles…)</label></div>
+        <div class="qi"><input type="checkbox" data-s="s1"><label>Les best-sellers capillaires sont positionnés à hauteur des yeux</label></div>
+        <div class="dv"></div>
+        <div class="og"><label class="ol"><span>→</span>Références en rupture fréquente</label><textarea id="s1r" placeholder="Ex : Shampoing argan 400ml, Masque réparateur..."></textarea></div>
+        <div class="og"><label class="ol"><span>→</span>Observations libres sur l'état du rayon</label><textarea id="s1o" placeholder="Ce que vous remarquez qui pourrait freiner la vente..."></textarea></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="ch"><div class="num np">2</div><div><div class="ct">Comportement des clientes en rayon</div><div class="cs">Pourquoi elles regardent mais n'achètent pas</div></div></div>
+      <div class="cb">
+        <div class="qi"><input type="checkbox" data-s="s2"><label>Les clientes s'arrêtent devant le rayon capillaire (bon trafic rayon)</label></div>
+        <div class="qi"><input type="checkbox" data-s="s2"><label>Les clientes prennent des produits en main pour les lire avant de les reposer</label></div>
+        <div class="qi"><input type="checkbox" data-s="s2"><label>Les clientes demandent souvent des conseils aux vendeurs sur le capillaire</label></div>
+        <div class="qi"><input type="checkbox" data-s="s2"><label>Les clientes comparent nos produits avec ceux de concurrents (photos, téléphone)</label></div>
+        <div class="qi"><input type="checkbox" data-s="s2"><label>Les clientes repartent souvent sans acheter après avoir regardé les prix</label></div>
+        <div class="qi"><input type="checkbox" data-s="s2"><label>Les clientes achètent généralement un seul produit capillaire (pas de panier multiple)</label></div>
+        <div class="dv"></div>
+        <div class="og"><label class="ol"><span>→</span>Ce que les clientes disent quand elles reposent un produit</label><textarea id="s2r" placeholder="Ex : C'est cher, je le trouve moins cher ailleurs..."></textarea></div>
+        <div class="og"><label class="ol"><span>→</span>Produits capillaires demandés que vous n'avez pas</label><textarea id="s2m" placeholder="Ex : Sérum anti-chute, masque bouclant..."></textarea></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="ch"><div class="num na">3</div><div><div class="ct">Perception du prix par les clientes</div><div class="cs">Le cœur du problème identifié</div></div></div>
+      <div class="cb">
+        <div class="qi"><input type="checkbox" data-s="s3"><label>Les clientes expriment régulièrement que les produits capillaires sont trop chers</label></div>
+        <div class="qi"><input type="checkbox" data-s="s3"><label>Les clientes citent des marques concurrentes moins chères (L'Oréal, Garnier, Elsève…)</label></div>
+        <div class="qi"><input type="checkbox" data-s="s3"><label>Les clientes demandent des promotions ou des réductions sur le capillaire</label></div>
+        <div class="qi"><input type="checkbox" data-s="s3"><label>Les produits d'entrée de gamme capillaires sont ceux qui partent le mieux</label></div>
+        <div class="qi"><input type="checkbox" data-s="s3"><label>Les clientes comprennent la différence de qualité qui justifie notre prix vs concurrents</label></div>
+        <div class="dv"></div>
+        <div class="og"><label class="ol"><span>→</span>Prix attendu par les clientes pour un shampoing "normal"</label><textarea id="s3p" placeholder="Ex : Entre 30 et 50 MAD, au-dessus de 80 MAD elles hésitent..."></textarea></div>
+        <div class="og"><label class="ol"><span>→</span>Concurrent proche avec produits similaires moins chers</label><textarea id="s3c" placeholder="Nommez le concurrent et les produits concernés..."></textarea></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="ch"><div class="num nb">4</div><div><div class="ct">Maîtrise produit et conseil vendeur</div><div class="cs">Le conseil qui fait la différence en retail propre</div></div></div>
+      <div class="cb">
+        <div class="qi"><input type="checkbox" data-s="s4"><label>Les vendeurs connaissent bien les gammes capillaires (ingrédients, bénéfices, différences)</label></div>
+        <div class="qi"><input type="checkbox" data-s="s4"><label>Les vendeurs proposent spontanément un 2e produit capillaire lors d'un achat (cross-sell)</label></div>
+        <div class="qi"><input type="checkbox" data-s="s4"><label>Les vendeurs ont reçu une formation capillaire récente (moins de 6 mois)</label></div>
+        <div class="qi"><input type="checkbox" data-s="s4"><label>Les vendeurs utilisent des arguments différenciants pour justifier le prix</label></div>
+        <div class="qi"><input type="checkbox" data-s="s4"><label>Il existe des fiches produits / supports de vente disponibles en rayon</label></div>
+        <div class="qi"><input type="checkbox" data-s="s4"><label>Les vendeurs proposent des routines complètes (shampoing + après-shampoing + soin)</label></div>
+        <div class="dv"></div>
+        <div class="og"><label class="ol"><span>→</span>Questions auxquelles les vendeurs ne savent pas répondre sur le capillaire</label><textarea id="s4l" placeholder="Ex : Différence entre les deux shampoings argan..."></textarea></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="ch"><div class="num nr">5</div><div><div class="ct">Concurrence et contexte local</div><div class="cs">Ce qui se passe autour du magasin</div></div></div>
+      <div class="cb">
+        <div class="qi"><input type="checkbox" data-s="s5"><label>Un nouveau concurrent a ouvert près de votre point de vente récemment</label></div>
+        <div class="qi"><input type="checkbox" data-s="s5"><label>Un concurrent existant a lancé des promotions agressives sur le capillaire</label></div>
+        <div class="qi"><input type="checkbox" data-s="s5"><label>Les clientes mentionnent avoir acheté sur internet des produits capillaires</label></div>
+        <div class="qi"><input type="checkbox" data-s="s5"><label>Il y a eu une baisse de fréquentation générale du magasin</label></div>
+        <div class="qi"><input type="checkbox" data-s="s5"><label>Des clientes habituelles ont réduit leur fréquence de visite</label></div>
+        <div class="dv"></div>
+        <div class="og"><label class="ol"><span>→</span>Concurrent capillaire le plus cité — pourquoi les clientes l'apprécient</label><textarea id="s5c" placeholder="Ex : Garnier Elsève pour le prix, L'Oréal pour la notoriété..."></textarea></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="ch"><div class="num ng">6</div><div><div class="ct">Votre analyse et recommandations</div><div class="cs">Votre avis terrain est le plus précieux</div></div></div>
+      <div class="cb">
+        <div class="og"><label class="ol"><span>→</span>Selon vous, quelle est la principale raison de la baisse des ventes capillaires ?</label><textarea id="s6ca" placeholder="Votre analyse terrain..." style="min-height:80px"></textarea></div>
+        <div class="og"><label class="ol"><span>→</span>Quelle action aurait le plus d'impact immédiat pour relancer le capillaire ?</label><textarea id="s6ac" placeholder="Ex : Baisser le prix d'un produit d'appel, formation vendeurs..." style="min-height:80px"></textarea></div>
+        <div class="og"><label class="ol"><span>→</span>Autre chose à signaler</label><textarea id="s6au" placeholder="Tout ce qui vous semble important..."></textarea></div>
+      </div>
+    </div>
+
+    <div class="sc">
+      <h3>Envoyer mes réponses</h3>
+      <p>Vos réponses seront enregistrées dans notre Google Sheet et consolidées pour le CoDir. Vous serez informé(e) des suites données.</p>
+      <button type="submit" class="btn" id="btn">Soumettre ma checklist</button>
+    </div>
+
+  </form>
+
+  <div class="suc" id="suc">
+    <div class="si">✅</div>
+    <h2>Réponses envoyées !</h2>
+    <p>Merci pour vos retours terrain. Vos réponses ont bien été enregistrées.</p>
+  </div>
+</main>
+
+<div class="ov" id="ov">
+  <div class="ob">
+    <div class="sp"></div>
+    <p style="font-size:14px;color:#64748B">Envoi en cours…</p>
+  </div>
+</div>
+
+<script>
+// ===================================================
+// COLLE ICI L'URL DE TON APPS SCRIPT (celle en /exec)
+// ===================================================
+var SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx8NnHpzeYklyes2HQeHbpNo_nnCdEfawJjsTxJoKBBoJI6gTL8RYU_-yEI7-fm_cw/exec';
+
+// Progression
+var allCbs = document.querySelectorAll('input[type=checkbox]');
+function updateProg() {
+  var t = allCbs.length;
+  var c = Array.from(allCbs).filter(function(x){return x.checked}).length;
+  document.getElementById('pf').style.width = Math.round(c/t*100)+'%';
+  document.getElementById('pl').textContent = c+' / '+t;
+}
+allCbs.forEach(function(cb){
+  cb.addEventListener('change', function(){
+    this.closest('.qi').classList.toggle('on', this.checked);
+    updateProg();
+  });
+});
+updateProg();
+
+// Collecter les cases cochées
+function checks(s) {
+  var r=[];
+  document.querySelectorAll('input[data-s="'+s+'"]').forEach(function(cb){
+    if(cb.checked) r.push(cb.closest('.qi').querySelector('label').textContent.trim());
+  });
+  return r.join(' | ');
+}
+
+// Soumission
+document.getElementById('frm').addEventListener('submit', function(e){
+  e.preventDefault();
+  var nom = document.getElementById('nom').value.trim();
+  var mag = document.getElementById('mag').value.trim();
+  var dat = document.getElementById('dat').value;
+  if(!nom||!mag||!dat){ alert('Merci de renseigner votre nom, magasin et date.'); return; }
+
+  var p = {
+    nom:         nom,
+    magasin:     mag,
+    date:        dat,
+    s1_checks:   checks('s1'),
+    s1_ruptures: document.getElementById('s1r').value,
+    s1_obs:      document.getElementById('s1o').value,
+    s2_checks:   checks('s2'),
+    s2_raisons:  document.getElementById('s2r').value,
+    s2_manque:   document.getElementById('s2m').value,
+    s3_checks:   checks('s3'),
+    s3_prix:     document.getElementById('s3p').value,
+    s3_conc:     document.getElementById('s3c').value,
+    s4_checks:   checks('s4'),
+    s4_lacunes:  document.getElementById('s4l').value,
+    s5_checks:   checks('s5'),
+    s5_conc:     document.getElementById('s5c').value,
+    s6_cause:    document.getElementById('s6ca').value,
+    s6_action:   document.getElementById('s6ac').value,
+    s6_autre:    document.getElementById('s6au').value
+  };
+
+  document.getElementById('ov').style.display = 'flex';
+  document.getElementById('btn').disabled = true;
+
+  // Méthode Image — la plus fiable avec Apps Script, pas de problème CORS
+  var qs = Object.keys(p).map(function(k){
+    return encodeURIComponent(k)+'='+encodeURIComponent(p[k]);
+  }).join('&');
+
+  var img = new Image();
+  img.onload = img.onerror = function(){
+    document.getElementById('ov').style.display = 'none';
+    document.getElementById('frm').style.display = 'none';
+    document.getElementById('suc').style.display = 'block';
+    window.scrollTo({top:0,behavior:'smooth'});
+  };
+  img.src = SCRIPT_URL + '?' + qs;
+});
+</script>
+</body>
+</html>
