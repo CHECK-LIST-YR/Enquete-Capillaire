@@ -142,7 +142,6 @@ textarea::placeholder,input::placeholder{color:#B0BDCC}
         <div class="qi"><input type="checkbox" data-s="s2"><label>Les clientes achètent généralement un seul produit capillaire (pas de panier multiple)</label></div>
         <div class="dv"></div>
         <div class="og"><label class="ol"><span>→</span>Ce que les clientes disent quand elles reposent un produit</label><textarea id="s2r" placeholder="Ex : C'est cher, je le trouve moins cher ailleurs..."></textarea></div>
-        <div class="og"><label class="ol"><span>→</span>Produits capillaires demandés que vous n'avez pas</label><textarea id="s2m" placeholder="Ex : Sérum anti-chute, masque bouclant..."></textarea></div>
       </div>
     </div>
 
@@ -198,7 +197,7 @@ textarea::placeholder,input::placeholder{color:#B0BDCC}
 
     <div class="sc">
       <h3>Envoyer mes réponses</h3>
-      <p>Vos réponses seront enregistrées dans notre Google Sheet et consolidées pour le CoDir. Vous serez informé(e) des suites données.</p>
+      <p>Vos réponses seront enregistrées et consolidées par notre équipe Data. Vous serez informé(e) du plan d'action.</p>
       <button type="submit" class="btn" id="btn">Soumettre ma checklist</button>
     </div>
 
@@ -266,7 +265,6 @@ document.getElementById('frm').addEventListener('submit', function(e){
     s1_obs:      document.getElementById('s1o').value,
     s2_checks:   checks('s2'),
     s2_raisons:  document.getElementById('s2r').value,
-    s2_manque:   document.getElementById('s2m').value,
     s3_checks:   checks('s3'),
     s3_prix:     document.getElementById('s3p').value,
     s3_conc:     document.getElementById('s3c').value,
