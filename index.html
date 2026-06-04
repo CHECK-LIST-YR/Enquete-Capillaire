@@ -195,6 +195,78 @@ textarea::placeholder,input::placeholder{color:#B0BDCC}
       </div>
     </div>
 
+    <!-- S7 — Lancement Gamme Réparation -->
+    <div class="card">
+      <div class="ch"><div class="num" style="background:#FEF3C7;color:#92400E;">7</div><div><div class="ct">Lancement Gamme Réparation</div><div class="cs">Perception et impact du nouveau lancement</div></div></div>
+      <div class="cb">
+
+        <div class="og">
+          <label class="ol"><span>→</span>Comment les clientes perçoivent-elles la nouvelle gamme Réparation ?</label>
+          <div class="qi"><input type="radio" name="rep_perception" value="Très positivement"><label>Très positivement</label></div>
+          <div class="qi"><input type="radio" name="rep_perception" value="Positivement"><label>Positivement</label></div>
+          <div class="qi"><input type="radio" name="rep_perception" value="Neutrement"><label>Neutrement</label></div>
+          <div class="qi"><input type="radio" name="rep_perception" value="Négativement"><label>Négativement</label></div>
+        </div>
+
+        <div class="dv"></div>
+
+        <div class="og">
+          <label class="ol"><span>→</span>Depuis le lancement, avez-vous constaté :</label>
+          <div class="qi"><input type="radio" name="rep_impact" value="Une amélioration des ventes"><label>Une amélioration des ventes de la catégorie</label></div>
+          <div class="qi"><input type="radio" name="rep_impact" value="Aucun changement significatif"><label>Aucun changement significatif</label></div>
+          <div class="qi"><input type="radio" name="rep_impact" value="Une baisse des ventes"><label>Une baisse des ventes de la catégorie</label></div>
+        </div>
+
+        <div class="dv"></div>
+
+        <div class="og">
+          <label class="ol"><span>→</span>Concernant les clientes qui achetaient l'ancienne gamme Réparation, que constatez-vous ?</label>
+          <div class="qi"><input type="checkbox" data-s="s7"><label>Elles ont adopté la nouvelle gamme Réparation</label></div>
+          <div class="qi"><input type="checkbox" data-s="s7"><label>Elles se sont reportées vers une autre gamme capillaire</label></div>
+          <div class="qi"><input type="checkbox" data-s="s7"><label>Elles achètent désormais une marque concurrente</label></div>
+          <div class="qi"><input type="checkbox" data-s="s7"><label>Elles achètent moins souvent des produits capillaires</label></div>
+          <div class="qi"><input type="checkbox" data-s="s7"><label>Elles n'achètent plus de produits capillaires chez nous</label></div>
+        </div>
+
+        <div class="dv"></div>
+
+        <div class="og">
+          <label class="ol"><span>→</span>Principaux motifs des clientes qui n'ont pas adopté la nouvelle gamme</label>
+          <div class="qi"><input type="checkbox" data-s="s7b"><label>Elles préféraient l'efficacité de l'ancienne formule</label></div>
+          <div class="qi"><input type="checkbox" data-s="s7b"><label>Elles préféraient la texture ou le parfum de l'ancienne gamme</label></div>
+          <div class="qi"><input type="checkbox" data-s="s7b"><label>Le prix est jugé trop élevé</label></div>
+          <div class="qi"><input type="checkbox" data-s="s7b"><label>Les bénéfices ne sont pas suffisamment différenciants</label></div>
+          <div class="qi"><input type="checkbox" data-s="s7b"><label>Elles ont trouvé une alternative concurrente plus attractive</label></div>
+        </div>
+
+        <div class="dv"></div>
+
+        <div class="og">
+          <label class="ol"><span>→</span>À quelle fréquence recommandez-vous la gamme Réparation ?</label>
+          <div class="qi"><input type="radio" name="rep_freq" value="Très souvent"><label>Très souvent</label></div>
+          <div class="qi"><input type="radio" name="rep_freq" value="Souvent"><label>Souvent</label></div>
+          <div class="qi"><input type="radio" name="rep_freq" value="Occasionnellement"><label>Occasionnellement</label></div>
+          <div class="qi"><input type="radio" name="rep_freq" value="Rarement"><label>Rarement</label></div>
+        </div>
+
+        <div class="dv"></div>
+
+        <div class="og">
+          <label class="ol"><span>→</span>Le discours produit est-il suffisamment clair et convaincant ?</label>
+          <div class="qi"><input type="radio" name="rep_discours" value="Oui"><label>Oui</label></div>
+          <div class="qi"><input type="radio" name="rep_discours" value="Partiellement"><label>Partiellement</label></div>
+          <div class="qi"><input type="radio" name="rep_discours" value="Non"><label>Non</label></div>
+        </div>
+
+        <div class="og"><label class="ol"><span>→</span>Si non ou partiellement, quelles améliorations proposeriez-vous ?</label><textarea id="s7_disc_txt" placeholder="Vos suggestions..."></textarea></div>
+
+        <div class="dv"></div>
+
+        <div class="og"><label class="ol"><span>→</span>Retours les plus fréquents des clientes sur la gamme Réparation</label><textarea id="s7_retours" placeholder="Ce que vous entendez le plus souvent en magasin..."></textarea></div>
+
+      </div>
+    </div>
+
     <div class="sc">
       <h3>Envoyer mes réponses</h3>
       <p>Vos réponses seront enregistrées et consolidées par notre équipe Data. Vous serez informé(e) du plan d'action.</p>
@@ -221,7 +293,7 @@ textarea::placeholder,input::placeholder{color:#B0BDCC}
 // ===================================================
 // COLLE ICI L'URL DE TON APPS SCRIPT (celle en /exec)
 // ===================================================
-var SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx8NnHpzeYklyes2HQeHbpNo_nnCdEfawJjsTxJoKBBoJI6gTL8RYU_-yEI7-fm_cw/exec';
+var SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxUAEVUorZHVd_X5aaiCYSfjfQG_zCvFoqBpYmnaBxltB6I99ZYRJxrG0UoOP8CycwQTg/exec';
 
 // Progression
 var allCbs = document.querySelectorAll('input[type=checkbox]');
@@ -239,7 +311,13 @@ allCbs.forEach(function(cb){
 });
 updateProg();
 
-// Collecter les cases cochées
+// Lire un bouton radio sélectionné
+function radio(n) {
+    var el = document.querySelector('input[name="' + n + '"]:checked');
+    return el ? el.value : '';
+  }
+
+  // Collecter les cases cochées
 function checks(s) {
   var r=[];
   document.querySelectorAll('input[data-s="'+s+'"]').forEach(function(cb){
@@ -272,9 +350,17 @@ document.getElementById('frm').addEventListener('submit', function(e){
     s4_lacunes:  document.getElementById('s4l').value,
     s5_checks:   checks('s5'),
     s5_conc:     document.getElementById('s5c').value,
-    s6_cause:    document.getElementById('s6ca').value,
-    s6_action:   document.getElementById('s6ac').value,
-    s6_autre:    document.getElementById('s6au').value
+    s6_cause:      document.getElementById('s6ca').value,
+    s6_action:     document.getElementById('s6ac').value,
+    s6_autre:      document.getElementById('s6au').value,
+    s7_perception: radio('rep_perception'),
+    s7_impact:     radio('rep_impact'),
+    s7_clientes:   checks('s7'),
+    s7_motifs:     checks('s7b'),
+    s7_frequence:  radio('rep_freq'),
+    s7_discours:   radio('rep_discours'),
+    s7_disc_txt:   document.getElementById('s7_disc_txt').value,
+    s7_retours:    document.getElementById('s7_retours').value
   };
 
   document.getElementById('ov').style.display = 'flex';
